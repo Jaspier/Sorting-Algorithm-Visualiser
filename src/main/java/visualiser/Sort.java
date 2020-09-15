@@ -1,5 +1,7 @@
 package visualiser;
 
+import visualiser.algorithms.BubbleSort;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -20,6 +22,8 @@ public class Sort extends JPanel {
     shuffle();
 
     setBackground(Color.BLACK);
+
+    new BubbleSort().runSortingAlgo(array);
     }
 
     private void shuffle() {
@@ -36,6 +40,7 @@ public class Sort extends JPanel {
      * Draws array
      * @param g Graphics pointer for drawing
      */
+    @Override
     public void paintComponent(Graphics g) {
         Graphics2D graphics = (Graphics2D)g;
         super.paintComponent(graphics);
@@ -50,6 +55,7 @@ public class Sort extends JPanel {
         }
     }
 
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(WIDTH, HEIGHT);
     }
