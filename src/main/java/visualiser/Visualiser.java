@@ -7,20 +7,21 @@ import javax.swing.JFrame;
  * @author Jaspier
  */
 public class Visualiser {
-    public static final int WIDTH = 1200;
-    public static final int HEIGHT = 720;
 
-    private final JFrame display;
+    private JFrame display;
+    private Sort sort;
 
     // Gui
     public Visualiser() {
         display = new JFrame("Sorting Algorithm Visualiser");
         display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        display.setSize(WIDTH, HEIGHT);
-        display.setVisible(true);
+
+        sort = new Sort();
+        display.add(sort);
+        sort.repaint();
     }
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         Visualiser visualiser = new Visualiser();
     }
 }
