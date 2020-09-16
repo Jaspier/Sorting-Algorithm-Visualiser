@@ -1,15 +1,23 @@
 package visualiser;
 
+import visualiser.algorithms.BubbleSort;
+import visualiser.algorithms.InsertionSort;
+import visualiser.algorithms.SelectionSort;
+import visualiser.algorithms.SortAlgoInterface;
+
 import javax.swing.JFrame;
+import java.util.ArrayList;
+import static util.sleep.secondsToNano;
+import static util.sleep.sleepFor;
 
 /**
  * Visualiser GUI
  * @author Jaspier
  */
 public class Visualiser {
-
     private JFrame display;
     private Sort sort;
+    private final ArrayList<SortAlgoInterface> sortingStack;
 
     // Gui
     public Visualiser() {
@@ -18,10 +26,35 @@ public class Visualiser {
 
         sort = new Sort();
         display.add(sort);
-        sort.repaint();
+        display.pack();
+        display.setVisible(true);
+
+        sortingStack = new ArrayList<>();
+        sortingStack.add(new BubbleSort());
+        //sortingStack.add(new InsertionSort());
+        //sortingStack.add(new SelectionSort());
+    }
+
+    private void shuffle_then_sleep() {
+        sort.shuffle();
+        sort.resetColours();
+        sleepFor(secondsToNano(2));
+    }
+
+    public void run() {
+        for (SortAlgoInterface algo : sortingStack) {
+            sleepFor(secondsToNano(1));
+            shuffle_then_sleep();
+            algo.runSortingAlgo(sort);
+            System.out.println("ARRAY IS SORTED");
+            sort.resetColours();
+            sort.highlightArray();
+            sort.resetColours();
+        }
     }
 
     public static void main(String... args) {
         Visualiser visualiser = new Visualiser();
+        visualiser.run();
     }
 }

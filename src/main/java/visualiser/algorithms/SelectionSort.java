@@ -1,5 +1,7 @@
 package visualiser.algorithms;
 
+import visualiser.Sort;
+
 /**
  * Selection Sort algorithm
  * @author Jaspier
@@ -7,18 +9,27 @@ package visualiser.algorithms;
 public class SelectionSort implements SortAlgoInterface{
 
     @Override
-    public void runSortingAlgo(int[] array) {
-        for (int i = 0; i < array.length-1; i++) {
-            int min_index = i;
-            for (int j = i+1; j < array.length; j++) {
-                if (array[j] < array[min_index])
-                    min_index = j;
+    public void runSortingAlgo(Sort array) {
+        int len = array.Size();
+        for (int i = 0; i < len - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < len; j++) {
+                if (array.getValue(j) < array.getValue(minIndex)) {
+                    minIndex = j;
+                }
             }
-            //swap
-            int temp = array[min_index];
-            array[min_index] = array[i];
-            array[i] = temp;
-
+            array.swap(i, minIndex, 40);
         }
     }
+
+    @Override
+    public String getName() {
+        return "Selection Sort";
+    }
+
+    @Override
+    public long getDelay() {
+        return 40;
+    }
 }
+
