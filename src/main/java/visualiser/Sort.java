@@ -51,10 +51,10 @@ public class Sort extends JPanel {
         sleepFor(millisecondsToNano(millisecondDelay));
     }
 
-    public void shuffle() {
-        Random rng = new Random();
+    public void randomiseArray() {
+        Random rand = new Random();
         for (int i = 0; i < Size(); i++) {
-            int swapWithIndex = rng.nextInt(Size() - 1);
+            int swapWithIndex = rand.nextInt(Size() - 1);
             swap(i, swapWithIndex, 5);
         }
     }

@@ -1,9 +1,6 @@
 package visualiser;
 
-import visualiser.algorithms.BubbleSort;
-import visualiser.algorithms.InsertionSort;
-import visualiser.algorithms.SelectionSort;
-import visualiser.algorithms.SortAlgoInterface;
+import visualiser.algorithms.*;
 
 import javax.swing.JFrame;
 import java.util.ArrayList;
@@ -31,12 +28,12 @@ public class Visualiser {
 
         sortingStack = new ArrayList<>();
         sortingStack.add(new BubbleSort());
-        //sortingStack.add(new InsertionSort());
-        //sortingStack.add(new SelectionSort());
+        sortingStack.add(new InsertionSort());
+        sortingStack.add(new SelectionSort());
     }
 
     private void shuffle_then_sleep() {
-        sort.shuffle();
+        sort.randomiseArray();
         sort.resetColours();
         sleepFor(secondsToNano(2));
     }
